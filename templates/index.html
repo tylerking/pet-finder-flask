@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ super() }} Welcome{% endblock %}
+
+{% block navigation %}
+<a class="add-pet-btn" href="{{ url_for('add_pet') }}" alt="Add Pet">
+  <i class="fas fa-plus"></i>
+  Pet
+</a>
+{% endblock %}
+
+{% block content %}
+<section id="pet-cards">
+  {% for pet in pets %}
+    <a href="{{ url_for('pet', id=pet.id) }}">
+      <div class="card">
+        <img
+          src="{{ pet.url }}"
+          alt="{{ pet.tag }}"
+        />
+        <h2>{{ pet.name }}</h2>
+        <h3>{{ pet.age }}</h3>
+        <p>{{ pet.description[:65] }}</p>
+      </div>
+    </a>
+  {% endfor %}
+</section>
+{% endblock %}
